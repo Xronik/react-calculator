@@ -8,22 +8,20 @@ function Main() {
   const [count, setCount] = useState(0)
   const [inputs, changeInputs] = useState([1, 1])
 
-  const button = {
-    btnValuesArr: [
-      { "+": (a, b) => { setCount(a + b) } },
-      { "-": (a, b) => { setCount(a - b) } },
-      { "*": (a, b) => { setCount(a * b) } },
-      { "/": (a, b) => { setCount(a / b) } },
-    ]
-  }
+  const button = [
+    { "+": (a, b) => { setCount(a + b) } },
+    { "-": (a, b) => { setCount(a - b) } },
+    { "*": (a, b) => { setCount(a * b) } },
+    { "/": (a, b) => { setCount(a / b) } },
+  ]
+
 
   return (
     <Container>
       <ButtonWrap>
-        <Button button={button.btnValuesArr[0]} inputs={inputs} />
-        <Button button={button.btnValuesArr[1]} inputs={inputs} />
-        <Button button={button.btnValuesArr[2]} inputs={inputs} />
-        <Button button={button.btnValuesArr[3]} inputs={inputs} />
+        {
+          button.map((el) => (<Button button={el} inputs={inputs} />))
+        }
       </ButtonWrap>
       <Inputs changeInputs={changeInputs} />
       <Result count={count} />
